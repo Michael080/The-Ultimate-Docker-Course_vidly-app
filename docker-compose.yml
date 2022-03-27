@@ -1,29 +1,28 @@
+---
 version: "3.8"
 
 services:
-  frontend:
-    depends_on: 
-      - backend
-    build: ./frontend
+  web:
+    build: ./frontend # spec path to Dockerfile
     ports:
-      - 3000:3000
-
-  backend: 
-    depends_on: 
-      - db
+      -3000:3000 # <host>:<container>
+  api:
     build: ./backend
-    ports: 
+    ports:
       - 3001:3001
-    environment: 
-      DB_URL: mongodb://db/vidly
-    command: ["sh", "./docker-entrypoint.sh"]
-
+  environment:
+    # <var>=<image name>://<connection string [service name/db-name]>
+    DB_URL: mongodb://db/vidly
   db:
+    # pull & build a mongo image from docker hub
     image: mongo:4.0-xenial
     ports:
       - 27017:27017
+    # map volume to directory in container
     volumes:
-      - vidly:/data/db
-
+      -vidly:/data/db
 volumes:
+  # map volume vidly to dir. inside the container
   vidly:
+  # *note* this syntax looks strange but ALL it seems to be doing is 'executing' the volume vidly after it has been defined...or something
+    
