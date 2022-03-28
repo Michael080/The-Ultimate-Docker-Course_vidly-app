@@ -12,6 +12,7 @@ services:
     depends_on:
       - db
     build: ./backend
+    # *note* this maps to the same resources as DB_URL does
     ports:
       - 3001:3001
     environment:
@@ -30,5 +31,4 @@ services:
 volumes:
   # map volume vidly to dir. inside the container
   vidly:
-  # *note* this syntax looks strange but ALL it seems to be doing is 'executing' the volume vidly after it has been defined...or something
-    
+  # *note* this syntax looks strange but ALL it seems to be doing is 'executing' the volume vidly after it has been defined...or something    
