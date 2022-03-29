@@ -18,6 +18,8 @@ services:
     environment:
      # <var>=<image name>://<connection string [service name/db-name]>
       DB_URL: mongodb://db/vidly
+    volumes:
+      - ./backend:/app # <host (relative path)>:<container>
     command: ["sh", "./docker-entrypoint.sh"]
 
   db:
