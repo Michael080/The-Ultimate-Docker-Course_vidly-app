@@ -20,7 +20,7 @@ function MovieForm({ onAddMovie }) {
       <Input
         aria-label="New Movie"
         onChange={handleChange}
-        placeholder="Add a new movie..."
+        placeholder="Add a new shmoovy!"
         type="text"
         value={title}
       />
