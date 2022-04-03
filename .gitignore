@@ -1,0 +1,2 @@
+# ignore ALL node-dependencies in vidly-app
+node_modules
