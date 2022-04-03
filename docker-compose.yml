@@ -1,6 +1,7 @@
 version: "3.8"
 services:
   web:
+    # volume mount conveys ownership uid (1000) on host to container setting user: node (uid: 1000) as owner and group. Running docker-compose session as uid:1000 is the most simple solution.
     user: 1000:1000
     depends_on:
       - api
