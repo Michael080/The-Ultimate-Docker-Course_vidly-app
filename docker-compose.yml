@@ -13,6 +13,8 @@ services:
       - ./frontend:/app # <host>:<container>
 
   api:
+    # volume mount conveys ownership uid (1000) on host to container setting user: node (uid: 1000) as owner and group. Running docker-compose session as uid:1000 is the most simple solution.
+    user: 1000:1000
     depends_on:
       - db
     build: ./backend
@@ -24,7 +26,8 @@ services:
       DB_URL: mongodb://db/vidly
     volumes:
       - ./backend:/app # <host (relative path)>:<container>
-    command: ["sh", "./docker-entrypoint.sh"]
+    # command: ["sh", "./docker-entrypoint.sh"]
+    command: ./docker-entrypoint.sh
 
   db:
     # pull & build a mongo image from docker hub
